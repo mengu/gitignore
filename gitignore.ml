@@ -94,8 +94,4 @@ let () =
               | Some igf ->
                  download_ignore_file igf
           end
-       | Some igf ->
-          download_ignore_file igf
      end
-  | Some ignore_file ->
-     download_ignore_file ignore_file
