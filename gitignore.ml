@@ -1,12 +1,15 @@
-open Core.Std
+open Core
 open Lwt
 open Lwt_io
 open Cohttp
 open Cohttp_lwt_unix
 
-let cwd = Sys.getcwd ()
+
+(* @TODO: ask to concatenate the options into one gitignore file *)
+
+let cwd             = Sys.getcwd ()
 let parent_dir_name = Filename.basename (Filename.dirname cwd)
-let gitignore_path = Filename.concat cwd ".gitignore"
+let gitignore_path  = Filename.concat cwd ".gitignore"
 
 let backup_old_gitignore () =
   match Sys.file_exists gitignore_path with

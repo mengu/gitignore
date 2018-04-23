@@ -1,4 +1,4 @@
-open Core.Std
+open Core
 open ANSITerminal
 
 let present_options options =
