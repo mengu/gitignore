@@ -29,7 +29,8 @@ let guess_from_parent_dir ignore_files =
   List.find ~f:pred ignore_files
 
 let match_from_extension exts ext =
-  List.filter ~f:(fun elm -> List.mem (snd elm) ext) exts
+  let equal a b = a = b in
+  List.filter ~f:(fun elm -> List.mem (snd elm) ext ~equal) exts
 
 let get_all_cur_dir_files () =
   let read_dir dir =
@@ -45,7 +46,7 @@ let get_all_cur_dir_files () =
   in
   aux(read_dir cwd, [])
   |> List.concat
-  |> List.dedup
+  |> List.dedup_and_sort
 
 let guess_from_exts exts =
   let dir_contents = get_all_cur_dir_files ()
@@ -62,21 +63,25 @@ let guess_from_exts exts =
   |> List.filter ~f:is_not_unwanted_file
   |> List.map ~f:split_file_name
   |> List.filter ~f:only_exts
-  |> List.dedup
+  |> List.dedup_and_sort
   |> List.map ~f:(match_from_extension exts)
   |> List.concat
   |> List.map ~f:(fun guess -> (fst guess))
 
 let guess_from_args = function
   | [] | [_] -> None
-  | prognam::igf::_ -> Some (igf ^ ".gitignore")
+  | _::igf::_ -> Some (String.capitalize igf ^ ".gitignore")
 
 let () =
   let args = Array.to_list Sys.argv in
   match guess_from_args args with
+  | Some ignore_file ->
+     download_ignore_file ignore_file
   | None ->
      begin
        match guess_from_parent_dir Ignore_files.ignore_files with
+       | Some igf ->
+          download_ignore_file igf
        | None ->
           begin
             let guesses = guess_from_exts Ignore_files.extensions in
