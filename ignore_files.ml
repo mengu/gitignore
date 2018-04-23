@@ -38,11 +38,11 @@ let ignore_files = [
 let extensions = [
   ("Agda.gitignore", ["agda"]);
   ("Android.gitignore", ["java"]);
-  ("C.gitignore", ["c"]);
-  ("C++.gitignore", ["cpp"]);
+  ("C.gitignore", ["c"; "h"]);
+  ("C++.gitignore", ["cpp"; "hpp"]);
   ("CakePHP.gitignore", ["php"]);
   ("CommonLisp.gitignore", ["cl"]);
-  ("Drupal.gitignore", ["php"]);
+  ("Drupal.gitignore", ["php"; "twig"]);
   ("Elisp.gitignore", ["el"]);
   ("Elixir.gitignore", ["ex"]);
   ("Elm.gitignore", ["elm"]);
@@ -55,7 +55,7 @@ let extensions = [
   ("JavaScript.gitignore", ["js"]);
   ("Julia.gitignore", ["julia"]);
   ("Kohana.gitignore", ["php"]);
-  ("Leiningen.gitignore", ["clj"; "cljs"]);
+  ("Leiningen.gitignore", ["clj"; "cljs"; "cljc"]);
   ("Magento.gitignore", ["php"]);
   ("OCaml.gitignore", ["ml"; "mli"]);
   ("Perl.gitignore", ["pl"]);
