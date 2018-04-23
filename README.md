@@ -8,13 +8,13 @@ It uses the .gitignore files from [Github's gitignore repository](https://github
 ### For macOS
 
 * `brew install ocaml opam`
-* `opam install core cohttp ansiterminal`
+* `opam install core cohttp cohttp-lwt ansiterminal`
 * `make build`
 
 ### For Linux
 
 * `(apt-get|yum|zypper) install ocaml opam`
-* `opam install core cohttp ansiterminal`
+* `opam install core cohttp cohttp-lwt ansiterminal`
 * `make build`
 
 ## Usage
